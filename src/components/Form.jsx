@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import InputBox from './InputBox';
 import SelectTypeBox from './SelectTypeBox';
 import SelectTagBox from './SelectTagBox';
 import CurriculumCard from './CurriculumCard';
+import { gsap } from 'gsap';
+import Button from './Button';
 
 export default function Form() {
+    const repelRefs = useRef([]);
   const roles = ['Intern', 'Junior'];
   const gradeOptions = ['9th', '10th', '11th', '12th'];
   const corporateSubjects = ['Math', 'English', 'Physics', 'Chemistry'];
@@ -93,14 +96,16 @@ export default function Form() {
     setError('');
     selectedCurriculum === 'k12' ? handleK12Submit() : handleCorporateSubmit();
   };
+  
+
+
 
   return (
     <div className='w-full min-h-[100px] flex justify-center items-center flex-col 
-    gap-2 pb-[50px] '>
-      <h1 className='text-semibold w-auto md:w-[20%] text-gray-900 rounded-2xl px-3 py-2
-      
-      text-center font-semibold text-[18px] border-[1px]
-       border-gray-900'>
+    gap-2 '>
+      <h1 
+      className='text-semibold  text-zinc-900 rounded-2xl px-8 py-5 bg-white border-[1px] border-gray-100
+      text-center font-semibold text-[18px] smallHeading  '>
         Structured Test
       </h1>
 
@@ -128,12 +133,14 @@ export default function Form() {
 
           <div className='w-full h-auto flex justify-between items-center gap-2 sm:gap-5 flex-col sm:flex-row'>
             <SelectTagBox
+            ref={(el) => (repelRefs.current[1] = el)}
               roles={gradeOptions}
               labelName='Select Grade'
               value={k12Grade}
               setValue={handleGradeChange}
             />
             <SelectTagBox
+             ref={(el) => (repelRefs.current[2] = el)}
               roles={gradeToSubjects[k12Grade] || []}
               labelName='Select Subject'
               value={k12Subject}
@@ -147,14 +154,7 @@ export default function Form() {
             value={k12Marks}
             setValue={setK12Marks}
           />
-
-
-          <button
-            type="submit"
-            className='w-full border-[1px] border-emerald-400 text-emerald-400 font-semibold text-[18px] text-center mt-5 py-3 rounded-[10px] hover:text-gray-900 transition-all duration-150 cursor-pointer hover:bg-emerald-400'
-          >
-            Generate Question
-          </button>
+         <Button/>
         </form>
       )}
 
@@ -170,19 +170,15 @@ export default function Form() {
             setValue={setCorpSubject}
           />
           <SelectTagBox
+           ref={(el) => (repelRefs.current[3] = el)}
             labelName="Select Difficulty Level"
             roles={roles}
             value={corpDifficulty}
             setValue={setCorpDifficulty}
           />
 
-
-          <button
-            type="submit"
-            className='w-full border border-emerald-400 text-emerald-400 font-semibold text-[18px] text-center mt-5 py-3 rounded-[10px] hover:text-gray-900 transition-all duration-150 cursor-pointer hover:bg-emerald-400'
-          >
-            Generate Question
-          </button>
+         <Button/>
+         
         </form>
       )}
     </div>

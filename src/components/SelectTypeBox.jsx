@@ -28,12 +28,14 @@ export default function SelectTypeBox({ options, labelName, value, setValue }) {
           value={selectedOptions.join(', ')}
           readOnly
           onClick={() => setShowOptions(!showOptions)}
-          className="w-full py-3 px-3 outline-none border border-gray-900 rounded-[10px] mt-1 bg-white text-gray-900"
+          className="w-full py-3 px-3 outline-none border border-teal-200 
+          rounded-[10px] mt-1 bg-white text-zinc-900"
           placeholder="All Possible"
         />
         <div
           onClick={() => setShowOptions(!showOptions)}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-900"
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer
+           text-zinc-900"
         >
           {showOptions ? <FiChevronUp size={20} /> : <FiChevronDown size={20} />}
         </div>
@@ -49,7 +51,8 @@ export default function SelectTypeBox({ options, labelName, value, setValue }) {
           {options.map((option, index) => (
             <label
               key={index}
-              className="flex items-center space-x-3 bg-gray-900 px-4 py-2 rounded-lg text-white"
+              className="flex items-center space-x-3 bg-zinc-900 px-4 py-2 rounded-lg
+               text-white"
             >
               <input
                 type="checkbox"
