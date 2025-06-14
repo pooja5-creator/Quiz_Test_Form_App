@@ -2,9 +2,22 @@ body {
    font-family: "Noto Sans", sans-serif;
 }
 
+main.mode{
+   background: linear-gradient(180deg, #121212,#121212, rgb(150, 247, 228));
+  background-size: 100% 300%; 
+  animation: moveBackground 5s infinite alternate ease-in-out; 
+}
+
+
+
+
 .lineBackground{
   background: linear-gradient(90deg,rgb(255, 255, 255),rgb(139, 232, 207),rgb(255, 255, 255));
 }
+.lineBackground2{
+  background: linear-gradient(180deg,rgb(10, 10, 10),rgb(139, 232, 207),rgb(10, 10, 10));
+}
+
 .boxShadow{
   box-shadow: 1px 2px 3px rgb(139, 232, 207);
 }

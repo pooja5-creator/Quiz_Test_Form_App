@@ -1,11 +1,12 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import Form from './Form';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Test() {
   const headingRefs = useRef([]);
   const paraRefs = useRef([]);
-
+ const {isDark,toggleTheme}=useTheme()
   const headingText = 'Effortless Test Creation with Smart Blueprints';
   const paraText =
     'Generate tests instantly using standard blueprints for academics and hiring';
@@ -60,10 +61,14 @@ export default function Test() {
   };
 
   return (
-    <div className="w-full min-h-[200px] pb-[10px] mx-auto flex flex-col items-center gap-5">
+    <main className={`w-full min-h-[200px] pb-[10px] mx-auto flex flex-col items-center 
+    gap-5 `}>
       <div className="w-full bg-zinc-900 md:rounded-br-full md:rounded-bl-full h-[250px]
-       flex flex-col justify-center items-center gap-5 boxShadow">
-
+       flex flex-col justify-center items-center gap-5 boxShadow relative">
+<div className={`w-[35px] flex justify-center items-center absolute right-5 top-3
+  text-2xl cursor-pointer  boxShadow2 hover:text-white transition-all duration-200 
+  ease-linear py-[6px] rounded-[5px]`} onClick={toggleTheme}>
+  <i class={`fa-solid fa-${isDark?'moon text-white':'sun text-amber-400 '}`}></i></div>
         {/* Heading */}
         <h1
           onMouseMove={(e) => handleMouseMove(e, headingRefs.current, true)}
@@ -100,11 +105,11 @@ export default function Test() {
         </p>
       </div>
 
-      <div className="w-full h-[2px] lineBackground"></div>
+      <div className={`w-[60%] h-[1px] ${!isDark?"lineBackground":"lineBackground2"}`}></div>
 
       <div className="w-full min-h-[200px] mt-5 py-[10px]">
-        <Form />
+        <Form isDark={isDark}/>
       </div>
-    </div>
+    </main>
   );
 }
